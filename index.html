@@ -15,7 +15,13 @@
 </style>
 <script>
     /* グローバル変数の宣言 */
-    
+    var SCREEN_SIZE = 500; // キャンバスの幅
+    var SIDE_CELLS = 200; // 一辺のセルの数
+    var CELL_SIZE = SCREEN_SIZE / SIDE_CELLS; // セルの幅
+    var FPS = 10; // フレームレート
+    var canvas; //= document.getElementById('world');
+    var context; //= canvas.getContext('2d');
+
     window.onload = function() {
         /* ゲームの初期化処理と開始処理 */
     }
