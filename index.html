@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>life game</title>
+<script src="main.js"></script>
+<style>
+    body {
+        background: black;
+        margin: 0;
+        padding: 0;
+    }
+    #world {
+        display: block;
+        margin: auto;
+    }
+</style>
+<script>
+    /* グローバル変数の宣言 */
+    
+    window.onload = function() {
+        /* ゲームの初期化処理と開始処理 */
+    }
+
+
+    function update() {
+        /* 世代の更新処理とキャンバスの描画処理 */
+        setTimeout(update, ミリ秒); // ミリ秒後に再帰処理をしてループ
+    }
+
+
+    function draw() {
+        /* キャンバスの描画処理。update関数で呼び出される予定。 */
+    }
+</script>
+<body>
+    <canvas id="world"></canvas>
+</body>
