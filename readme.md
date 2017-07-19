@@ -1,2 +1,2 @@
 # らいふげーむ
-g-empr.github.io/life-game/
+https://g-empr.github.io/life-game/
