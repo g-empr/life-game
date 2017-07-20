@@ -2,29 +2,49 @@
 <meta charset="utf-8">
 <title>life game</title>
 <script>
-    var SCREEN_SIZE = 500; // キャンバスの幅
-    var SIDE_CELLS = 100; // 一辺のセルの数
-    var CELL_SIZE = SCREEN_SIZE / SIDE_CELLS; // セルの幅
-    var FPS = 10; // フレームレート
+    // キャンバスの幅
+    var SCREEN_SIZE = 500;
+    // 一辺のセルの数
+    var SIDE_CELLS = 100;
+    // セルの幅
+    var CELL_SIZE = SCREEN_SIZE / SIDE_CELLS;
+    // フレームレート
+    var FPS = 10;
+
     var canvas; //= document.getElementById('world');
     var context; //= canvas.getContext('2d');
 
+    /* 初期化処理と開始処理 */
     window.onload = function() {
-        var field = new Array(SIDE_CELLS*SIDE_CELLS); // フィールド情報
-        var tempField = new Array(SIDE_CELLS*SIDE_CELLS); // フィールド情報の一時記憶用
-        for (var i=0; i<field.length; i++) field[i] = Math.floor(Math.random()*2); // ランダムに「生」「死」を格納
-        canvas = document.getElementById('world'); // canvas要素を取得
-        canvas.width = canvas.height = SCREEN_SIZE; // キャンバスのサイズを設定
-        var scaleRate = Math.min(window.innerHeight/SCREEN_SIZE, window.innerHeight/SCREEN_SIZE); // Canvas引き伸ばし率の取得
-        canvas.style.width = canvas.style.height = SCREEN_SIZE*scaleRate+'px';  // キャンバスを引き伸ばし
-        context = canvas.getContext('2d'); // コンテキスト
-        context.fillStyle = 'rgb(0, 0, 0)'; // 色
-        update(field, tempField); // ゲームループ開始
+        // フィールド情報
+        var field = new Array(SIDE_CELLS*SIDE_CELLS);
+        // フィールド情報の一時記憶用
+        var tempField = new Array(SIDE_CELLS*SIDE_CELLS);
+
+        // ランダムに「生」「死」を格納
+        for (var i=0; i<field.length; i++) field[i] = Math.floor(Math.random()*2);
+        // canvas要素を取得
+        canvas = document.getElementById('world');
+        // キャンバスのサイズを設定
+        canvas.width = canvas.height = SCREEN_SIZE;
+        // Canvas引き伸ばし率の取得
+        var scaleRate = Math.min(window.innerHeight/SCREEN_SIZE, window.innerHeight/SCREEN_SIZE);
+        // キャンバスを引き伸ばし
+        canvas.style.width = canvas.style.height = SCREEN_SIZE*scaleRate+'px';
+        // コンテキスト
+        context = canvas.getContext('2d');
+        // 色
+        context.fillStyle = 'rgb(0, 0, 0)';
+        // ゲームループ開始
+        update(field, tempField);
     }
 
+    /* 世代の更新処理とキャンバスの描画処理 */
     function update(field, tempField) {
-        var n = 0; // 自身のまわりにある「生」の数
-        tempField = field.slice(); // 複製
+        // 自身のまわりにある「生」の数
+        var n = 0;
+        // 複製
+        tempField = field.slice(); 
         for (var i=0; i<tempField.length; i++) {
             n = 0;
             for (var s=-1; s<2; s++) {
@@ -48,6 +68,7 @@
         setTimeout(update, 1000/FPS, field, tempField); // 再帰
     }
 
+    /* キャンバスの描画処理、update関数で呼び出す */
     function draw(field) {
         context.clearRect(0, 0, SCREEN_SIZE, SCREEN_SIZE); // 画面をクリア
         for (var i=0; i<field.length; i++) {
